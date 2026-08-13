@@ -1,33 +1,5 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Users Directory
-|--------------------------------------------------------------------------
-|
-| Source:
-|   multipie_auth_prod.public.users
-|
-| Display columns:
-|   ID
-|   Username
-|   Mobile
-|   Display Name
-|   User Type
-|   Email
-|   Status
-|   Created
-|   Updated
-|   Action
-|
-| Status logic:
-|   Active   = current_sign_in_at OR last_sign_in_at is within 30 days
-|   Inactive = otherwise
-|
-| Edit is display-only.
-| Delete is intentionally non-functional for corporate-data safety.
-|--------------------------------------------------------------------------
-*/
 
 $perPage = 25;
 
@@ -312,8 +284,7 @@ function multipieQuery(array $overrides = []): string
     <button
         class="btn btn-orange"
         type="button"
-        disabled
-        title="User creation is not enabled for corporate data."
+        onclick="openAddUserModal()"
     >
         <svg class="icon icon-sm">
             <use href="#i-user-plus"/>
@@ -649,6 +620,204 @@ function multipieQuery(array $overrides = []): string
 
 
 <!-- ================================================================
+     ADD NEW USER MODAL
+     ================================================================ -->
+
+<div
+    id="add-user-modal"
+    class="user-popup-overlay"
+    hidden
+>
+    <div
+        class="user-popup"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="add-user-modal-title"
+    >
+
+        <div class="user-popup-header">
+
+            <div>
+                <h2 id="add-user-modal-title">
+                    Add New User
+                </h2>
+
+                <p>
+                    Enter user information for display only.
+                </p>
+            </div>
+
+            <button
+                type="button"
+                class="user-popup-close"
+                onclick="closeAddUserModal()"
+                aria-label="Close"
+            >
+                &times;
+            </button>
+
+        </div>
+
+
+        <div class="user-popup-grid">
+
+            <div class="field">
+                <label for="add-user-id">ID</label>
+                <input
+                    id="add-user-id"
+                    type="text"
+                    value="Auto generated"
+                    disabled
+                >
+            </div>
+
+
+            <div class="field">
+                <label for="add-user-username">Username</label>
+                <input
+                    id="add-user-username"
+                    type="text"
+                    placeholder="Enter username"
+                    disabled
+                >
+            </div>
+
+
+            <div class="field">
+                <label for="add-user-first-name">First Name</label>
+                <input
+                    id="add-user-first-name"
+                    type="text"
+                    placeholder="Enter first name"
+                    disabled
+                >
+            </div>
+
+
+            <div class="field">
+                <label for="add-user-last-name">Last Name</label>
+                <input
+                    id="add-user-last-name"
+                    type="text"
+                    placeholder="Enter last name"
+                    disabled
+                >
+            </div>
+
+
+            <div class="field">
+                <label for="add-user-mobile">Mobile</label>
+                <input
+                    id="add-user-mobile"
+                    type="text"
+                    placeholder="Enter mobile number"
+                    disabled
+                >
+            </div>
+
+
+            <div class="field">
+                <label for="add-user-email">Email</label>
+                <input
+                    id="add-user-email"
+                    type="email"
+                    placeholder="Enter email address"
+                    disabled
+                >
+            </div>
+
+
+            <div class="field">
+                <label for="add-user-role">Role</label>
+                <select id="add-user-role" disabled>
+                    <option value="0">User</option>
+                    <option value="1">Admin</option>
+                </select>
+            </div>
+
+
+            <div class="field">
+                <label for="add-user-status">Status</label>
+                <select id="add-user-status" disabled>
+                    <option value="active">Active</option>
+                    <option value="inactive">Inactive</option>
+                </select>
+            </div>
+
+
+            <div class="field">
+                <label for="add-user-uid">UID</label>
+                <input
+                    id="add-user-uid"
+                    type="text"
+                    placeholder="Enter UID"
+                    disabled
+                >
+            </div>
+
+
+            <div class="field">
+                <label for="add-user-created">Created</label>
+                <input
+                    id="add-user-created"
+                    type="text"
+                    value="Not created yet"
+                    disabled
+                >
+            </div>
+
+
+            <div class="field">
+                <label for="add-user-updated">Updated</label>
+                <input
+                    id="add-user-updated"
+                    type="text"
+                    value="Not updated yet"
+                    disabled
+                >
+            </div>
+
+
+            <div class="field">
+                <label for="add-user-display-name">Display Name</label>
+                <input
+                    id="add-user-display-name"
+                    type="text"
+                    placeholder="Enter display name"
+                    disabled
+                >
+            </div>
+
+        </div>
+
+
+        <div class="user-popup-footer">
+
+            <button
+                type="button"
+                class="btn btn-outline"
+                onclick="closeAddUserModal()"
+            >
+                Close
+            </button>
+
+
+            <button
+                type="button"
+                class="btn btn-navy"
+                disabled
+                title="User creation is intentionally disabled for corporate data."
+            >
+                Save User
+            </button>
+
+        </div>
+
+    </div>
+</div>
+
+
+<!-- ================================================================
      EDIT USER MODAL
      ================================================================ -->
 
@@ -794,6 +963,74 @@ function multipieQuery(array $overrides = []): string
 
 <script>
 
+function openAddUserModal() {
+
+    const modal = document.getElementById('add-user-modal');
+
+    if (!modal) {
+        return;
+    }
+
+    /*
+     * Reset the display-only form every time it is opened.
+     */
+
+    document.getElementById('add-user-id').value =
+        'Auto generated';
+
+    document.getElementById('add-user-username').value =
+        '';
+
+    document.getElementById('add-user-first-name').value =
+        '';
+
+    document.getElementById('add-user-last-name').value =
+        '';
+
+    document.getElementById('add-user-mobile').value =
+        '';
+
+    document.getElementById('add-user-email').value =
+        '';
+
+    document.getElementById('add-user-role').value =
+        '0';
+
+    document.getElementById('add-user-status').value =
+        'active';
+
+    document.getElementById('add-user-uid').value =
+        '';
+
+    document.getElementById('add-user-created').value =
+        'Not created yet';
+
+    document.getElementById('add-user-updated').value =
+        'Not updated yet';
+
+    document.getElementById('add-user-display-name').value =
+        '';
+
+    modal.hidden = false;
+
+    document.body.style.overflow = 'hidden';
+}
+
+
+function closeAddUserModal() {
+
+    const modal = document.getElementById('add-user-modal');
+
+    if (!modal) {
+        return;
+    }
+
+    modal.hidden = true;
+
+    document.body.style.overflow = '';
+}
+
+
 function openUserModal(user) {
 
     const modal = document.getElementById('user-modal');
@@ -858,10 +1095,23 @@ document.getElementById('user-modal')
     });
 
 
+document.getElementById('add-user-modal')
+    ?.addEventListener('click', function(event) {
+
+        if (event.target === this) {
+            closeAddUserModal();
+        }
+
+    });
+
+
 document.addEventListener('keydown', function(event) {
 
     if (event.key === 'Escape') {
+
         closeUserModal();
+        closeAddUserModal();
+
     }
 
 });

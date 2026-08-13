@@ -21,6 +21,8 @@ try {
         ]
     );
 
+    echo "mysql connected";
+
 } catch (PDOException $e) {
 
     die(
