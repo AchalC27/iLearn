@@ -10,3 +10,131 @@ html, body {
 body {
   overflow-x: hidden;
 }
+
+
+/* =========================================================
+   MultiPie two-level sticky header layout
+   ========================================================= */
+
+.main-db-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+#ilearn-header {
+  position: sticky;
+  top: 64px;
+  z-index: 900;
+}
+
+#ilearn-sidebar {
+  position: sticky;
+  top: 120px;
+  height: calc(100vh - 120px);
+  min-height: calc(100vh - 120px);
+  overflow-y: auto;
+}
+
+.cms-main {
+  min-height: calc(100vh - 120px);
+}
+
+/* User directory controls added without changing the existing visual system. */
+
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 2px;
+}
+
+.pagination-info {
+  color: var(--slate-500);
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.role-badge.User {
+  background: var(--sky-50);
+  color: var(--sky-700);
+  border-color: #bae6fd;
+}
+
+.user-popup-overlay[hidden] {
+  display: none !important;
+}
+
+.user-popup-overlay {
+  background: rgba(15,23,42,.55);
+}
+
+.user-popup {
+  width: min(900px, 100%);
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.user-popup-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.user-popup-grid .field input,
+.user-popup-grid .field select {
+  min-height: 38px;
+}
+
+.table-list-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.table-name-card {
+  padding: 12px;
+  background: #fff;
+  border: 1px solid var(--slate-200);
+  border-radius: 6px;
+  box-shadow: var(--shadow-xs);
+  color: var(--navy);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.metric-label {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  color: var(--slate-400);
+}
+
+.metric-value {
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--navy);
+  margin-top: 4px;
+}
+
+.metric-sub {
+  font-size: 10px;
+  color: var(--slate-500);
+  margin-top: 3px;
+}
+
+@media (max-width: 900px) {
+  .table-list-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 700px) {
+  .user-popup-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .table-list-grid {
+    grid-template-columns: 1fr;
+  }
+}

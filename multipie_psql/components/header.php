@@ -3,16 +3,23 @@
     <div class="brand-group">
       <div id="ilearn-brand-logo">
         <span class="brand-name">Multi<span>Pie</span></span>
-        <span class="brand-pill">CMS Portal</span>
+        <span class="brand-pill">CMS PORTAL</span>
       </div>
+
       <span class="header-divider"></span>
+
       <p class="header-subtitle">MultiPie Knowledge &amp; Learning Engine</p>
     </div>
 
     <form class="header-search" method="get" action="index.php">
       <input type="hidden" name="page" value="<?= e($page) ?>">
       <svg class="icon"><use href="#i-search"/></svg>
-      <input name="q" type="search" value="<?= e($_GET['q'] ?? '') ?>" placeholder="Search records, learners, financial posts...">
+      <input
+        name="q"
+        type="search"
+        value="<?= e($_GET['q'] ?? '') ?>"
+        placeholder="Search records, learners, financial posts..."
+      >
     </form>
 
     <div class="header-right">

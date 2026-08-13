@@ -1,5 +1,6 @@
 <?php $footerApp = 'MultiPie'; ?>
-<footer id="shared-footer" class="cms-footer shared-footer">
+
+<footer id="ilearn-footer" class="cms-footer shared-footer">
   <div class="footer-inner">
     <div class="footer-legal">
       <div class="footer-brand">
@@ -9,6 +10,7 @@
       <p>© 2026 ICICI Securities Limited. Member NSE &amp; BSE.</p>
       <p>SEBI Regn. No. INZ000183631. Compliance audit synchronized.</p>
     </div>
+
     <div class="footer-links">
       <a href="#compliance">SEBI Compliance</a>
       <a href="#audit">Audit Logs</a>
