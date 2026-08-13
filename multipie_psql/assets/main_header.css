@@ -1,0 +1,116 @@
+/* =========================================================
+   SHARED MAIN HEADER
+   The main header stays fixed/sticky at the very top.
+   The application header sits immediately below it.
+   ========================================================= */
+
+.main-db-header {
+  height: 64px;
+  background: #06284d;
+  color: #fff;
+  border-bottom: 1px solid rgba(255,255,255,.12);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 1px 4px rgba(0,0,0,.12);
+}
+
+.main-db-header-inner {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 42px;
+  padding: 0 22px;
+}
+
+.main-db-brand {
+  font-size: 15px;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.database-switcher {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px;
+  border: 1px solid rgba(255,255,255,.15);
+  border-radius: 8px;
+  background: rgba(0,0,0,.18);
+}
+
+.database-button {
+  width: 112px;
+  height: 46px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 6px;
+  color: #fff;
+  text-decoration: none;
+  transition: background .2s ease, transform .2s ease, box-shadow .2s ease;
+  box-sizing: border-box;
+}
+
+.database-button:hover {
+  transform: translateY(-1px);
+  background: #0b427f;
+}
+
+.database-button.active {
+  box-shadow: 0 2px 9px rgba(0,0,0,.18);
+}
+
+.ilearn-button {
+  background: #07366b;
+}
+
+.ilearn-button.active {
+  background: #f58220;
+}
+
+.multipie-button {
+  background: #07366b;
+}
+
+.multipie-button.active {
+  background: #0c477f;
+}
+
+.database-name {
+  font-size: 14px;
+  font-weight: 800;
+  line-height: 18px;
+}
+
+.database-type {
+  font-size: 9px;
+  opacity: .9;
+}
+
+@media (max-width: 700px) {
+  .main-db-header-inner {
+    gap: 12px;
+    padding: 0 12px;
+  }
+
+  .main-db-brand {
+    font-size: 12px;
+  }
+
+  .database-button {
+    width: 100px;
+  }
+}
+
+@media (max-width: 480px) {
+  .main-db-header-inner {
+    justify-content: center;
+  }
+
+  .main-db-brand {
+    display: none;
+  }
+}
