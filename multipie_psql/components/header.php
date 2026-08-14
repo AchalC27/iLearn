@@ -23,10 +23,10 @@
     </form>
 
     <div class="header-right">
-      <a class="btn-templates" href="index.php?page=dashboard">
+      <!-- <a class="btn-templates" href="index.php?page=dashboard">
         <svg class="icon"><use href="#i-book"/></svg>
         <span class="btn-label">HTML Templates</span>
-      </a>
+      </a> -->
 
       <div class="header-market-badge">
         <span class="dot-live"></span>

@@ -11,6 +11,9 @@ $allowedPages = [
     'posts',
     'comments',
     'analytics',
+    'amcs',
+    'announcements',
+    'cams_feedbacks',
 ];
 
 if (!in_array($page, $allowedPages, true)) {

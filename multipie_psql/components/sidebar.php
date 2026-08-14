@@ -67,6 +67,55 @@ try {
 
                 <li>
                     <a
+                        class="nav-btn <?= $page === 'amcs' ? 'active' : '' ?>"
+                        href="index.php?page=amcs"
+                    >
+                        <span class="nav-btn-left">
+                            <svg class="icon">
+                                <use href="#i-layout"/>
+                            </svg>
+                            <span class="sidebar-label">
+                                AMCs
+                            </span>
+                        </span>
+                    </a>
+                </li>
+
+                <li>
+
+                    <a
+                        class="nav-btn <?= $page === 'announcements' ? 'active' : '' ?>"
+                        href="index.php?page=announcements"
+                    >
+                        <span class="nav-btn-left">
+                            <svg class="icon">
+                                <use href="#i-file-text"></use>
+                            </svg>
+                            <span class="sidebar-label">
+                                Announcements
+                            </span>
+                        </span>
+                    </a>
+                </li>
+
+                <li>
+                    <a
+                        class="nav-btn <?= $page === 'cams_feedbacks' ? 'active' : '' ?>"
+                        href="index.php?page=cams_feedbacks"
+                    >
+                        <span class="nav-btn-left">
+                            <svg class="icon">
+                                <use href="#i-message"></use>
+                            </svg>
+                            <span class="sidebar-label">
+                                Cams Feedbacks
+                            </span>
+                        </span>
+                    </a>
+                </li>
+
+                <!-- <li>
+                    <a
                         class="nav-btn <?= $page === 'posts' ? 'active' : '' ?>"
                         href="index.php?page=posts"
                     >
@@ -91,12 +140,12 @@ try {
                             <span class="sidebar-label">Comments</span>
                         </span>
                     </a>
-                </li>
+                </li> -->
 
             </ul>
         </div>
 
-        <div>
+        <!-- <div>
             <p class="sidebar-group-title">Analytics &amp; Inspector</p>
 
             <ul role="list">
@@ -133,7 +182,7 @@ try {
                 </li>
 
             </ul>
-        </div>
+        </div> -->
 
     </nav>
 

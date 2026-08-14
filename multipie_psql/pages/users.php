@@ -668,6 +668,8 @@ function multipieQuery(array $overrides = []): string
                     type="text"
                     value="Auto generated"
                     disabled
+
+
                 >
             </div>
 
@@ -678,7 +680,6 @@ function multipieQuery(array $overrides = []): string
                     id="add-user-username"
                     type="text"
                     placeholder="Enter username"
-                    disabled
                 >
             </div>
 
@@ -689,7 +690,7 @@ function multipieQuery(array $overrides = []): string
                     id="add-user-first-name"
                     type="text"
                     placeholder="Enter first name"
-                    disabled
+
                 >
             </div>
 
@@ -700,7 +701,7 @@ function multipieQuery(array $overrides = []): string
                     id="add-user-last-name"
                     type="text"
                     placeholder="Enter last name"
-                    disabled
+
                 >
             </div>
 
@@ -711,7 +712,7 @@ function multipieQuery(array $overrides = []): string
                     id="add-user-mobile"
                     type="text"
                     placeholder="Enter mobile number"
-                    disabled
+
                 >
             </div>
 
@@ -722,14 +723,13 @@ function multipieQuery(array $overrides = []): string
                     id="add-user-email"
                     type="email"
                     placeholder="Enter email address"
-                    disabled
                 >
             </div>
 
 
             <div class="field">
                 <label for="add-user-role">Role</label>
-                <select id="add-user-role" disabled>
+                <select id="add-user-role" >
                     <option value="0">User</option>
                     <option value="1">Admin</option>
                 </select>
@@ -738,7 +738,7 @@ function multipieQuery(array $overrides = []): string
 
             <div class="field">
                 <label for="add-user-status">Status</label>
-                <select id="add-user-status" disabled>
+                <select id="add-user-status" >
                     <option value="active">Active</option>
                     <option value="inactive">Inactive</option>
                 </select>
@@ -751,7 +751,7 @@ function multipieQuery(array $overrides = []): string
                     id="add-user-uid"
                     type="text"
                     placeholder="Enter UID"
-                    disabled
+
                 >
             </div>
 
@@ -784,7 +784,6 @@ function multipieQuery(array $overrides = []): string
                     id="add-user-display-name"
                     type="text"
                     placeholder="Enter display name"
-                    disabled
                 >
             </div>
 
@@ -865,31 +864,31 @@ function multipieQuery(array $overrides = []): string
 
             <div class="field">
                 <label>ID</label>
-                <input id="modal-id" type="text" disabled>
+                <input id="modal-id" disabled type="text" >
             </div>
 
 
             <div class="field">
                 <label>Username</label>
-                <input id="modal-username" type="text" disabled>
+                <input id="modal-username" type="text" >
             </div>
 
 
             <div class="field">
                 <label>Mobile</label>
-                <input id="modal-mobile" type="text" disabled>
+                <input id="modal-mobile" type="text">
             </div>
 
 
             <div class="field">
                 <label>Display Name</label>
-                <input id="modal-display-name" type="text" disabled>
+                <input id="modal-display-name" type="text">
             </div>
 
 
             <div class="field">
                 <label>User Type</label>
-                <select id="modal-user-type" disabled>
+                <select id="modal-user-type" >
                     <option value="0">User</option>
                     <option value="1">Admin</option>
                 </select>
@@ -898,37 +897,37 @@ function multipieQuery(array $overrides = []): string
 
             <div class="field">
                 <label>Email</label>
-                <input id="modal-email" type="text" disabled>
+                <input id="modal-email" type="text" >
             </div>
 
 
             <div class="field">
                 <label>Status</label>
-                <input id="modal-status" type="text" disabled>
+                <input id="modal-status" type="text" >
             </div>
 
 
             <div class="field">
                 <label>Created</label>
-                <input id="modal-created" type="text" disabled>
+                <input id="modal-created" disabled type="text" >
             </div>
 
 
             <div class="field">
                 <label>Updated</label>
-                <input id="modal-updated" type="text" disabled>
+                <input id="modal-updated" disabled type="text" >
             </div>
 
 
             <div class="field">
                 <label>Current Sign In</label>
-                <input id="modal-current-sign-in" type="text" disabled>
+                <input id="modal-current-sign-in" disabled type="text" >
             </div>
 
 
             <div class="field">
                 <label>Last Sign In</label>
-                <input id="modal-last-sign-in" type="text" disabled>
+                <input id="modal-last-sign-in" disabled type="text" >
             </div>
 
         </div>
@@ -949,7 +948,8 @@ function multipieQuery(array $overrides = []): string
                 type="button"
                 class="btn btn-navy"
                 disabled
-                title="Save is intentionally disabled for corporate data."
+                
+                title="Save is intentionally disabled."
             >
                 Save Changes
             </button>

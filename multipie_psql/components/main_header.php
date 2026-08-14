@@ -16,7 +16,7 @@ $currentPage = $_GET['page'] ?? 'dashboard';
                 href="../index.php?app=ilearn_mysql&amp;page=<?= urlencode($currentPage) ?>"
             >
                 <span class="database-name">iLearn</span>
-                <span class="database-type">MySQL</span>
+                <!-- <span class="database-type">MySQL</span> -->
             </a>
 
             <a
@@ -24,7 +24,7 @@ $currentPage = $_GET['page'] ?? 'dashboard';
                 href="../index.php?app=multipie_psql&amp;page=<?= urlencode($currentPage) ?>"
             >
                 <span class="database-name">MultiPie</span>
-                <span class="database-type">PostgreSQL</span>
+                <!-- <span class="database-type">PostgreSQL</span> -->
             </a>
         </nav>
     </div>
