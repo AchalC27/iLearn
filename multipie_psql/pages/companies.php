@@ -55,6 +55,16 @@ $companies = [];
 
 $totalCompanies = 0;
 
+// Pagination
+$perPage = 25;
+
+$currentPage = max(
+    1,
+    (int)($_GET['p'] ?? 1)
+);
+
+$totalPages = 1;
+
 $dbError = null;
 
 
@@ -248,6 +258,25 @@ try {
 
 
     /*
+     * --------------------------------------------------------------------------
+     * | Pagination
+     * --------------------------------------------------------------------------
+     */
+
+    $totalPages = max(
+        1,
+        (int)ceil($totalCompanies / $perPage)
+    );
+
+    if ($currentPage > $totalPages) {
+        $currentPage = $totalPages;
+    }
+
+    $offset =
+        ($currentPage - 1) * $perPage;
+
+
+    /*
     |--------------------------------------------------------------------------
     | Fetch companies
     |--------------------------------------------------------------------------
@@ -296,6 +325,9 @@ try {
 
         ORDER BY
             name ASC NULLS LAST
+
+        LIMIT :limit
+        OFFSET :offset
     ";
 
 
@@ -318,6 +350,19 @@ try {
     }
 
 
+    $stmt->bindValue(
+        ':limit',
+        $perPage,
+        PDO::PARAM_INT
+    );
+
+    $stmt->bindValue(
+        ':offset',
+        $offset,
+        PDO::PARAM_INT
+    );
+
+
     $stmt->execute();
 
 
@@ -335,6 +380,8 @@ try {
     $companies = [];
 
     $totalCompanies = 0;
+
+    $totalPages = 1;
 }
 
 ?>
@@ -832,6 +879,42 @@ try {
 
 </div>
 
+
+<?php if (($totalPages ?? 1) > 1): ?>
+
+    <div class="pagination">
+
+        <?php if ($currentPage > 1): ?>
+
+            <a
+                class="btn btn-outline btn-sm"
+                href="index.php?<?= e(multipieQuery(['p' => $currentPage - 1])) ?>"
+            >
+                Previous
+            </a>
+
+        <?php endif; ?>
+
+
+        <span class="pagination-info">
+            Page <?= $currentPage ?> of <?= $totalPages ?>
+        </span>
+
+
+        <?php if ($currentPage < $totalPages): ?>
+
+            <a
+                class="btn btn-outline btn-sm"
+                href="index.php?<?= e(multipieQuery(['p' => $currentPage + 1])) ?>"
+            >
+                Next
+            </a>
+
+        <?php endif; ?>
+
+    </div>
+
+<?php endif; ?>
 
 
 <!-- =================================================================
@@ -1703,19 +1786,6 @@ try {
 
 </div>
 
-
-
-<!-- =================================================================
-     CSS
-================================================================= -->
-
-
-
-
-
-<!-- =================================================================
-     JAVASCRIPT
-================================================================= -->
 
 <script>
 

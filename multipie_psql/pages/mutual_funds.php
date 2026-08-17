@@ -69,6 +69,27 @@ $dbError = null;
 
 /*
 |--------------------------------------------------------------------------
+| PAGINATION
+|--------------------------------------------------------------------------
+|
+| Same pagination pattern used on the existing MultiPie pages.
+|
+*/
+
+$perPage = 25;
+
+$currentPage = max(
+    1,
+    (int)($_GET['p'] ?? 1)
+);
+
+$totalPages = 1;
+
+$offset = 0;
+
+
+/*
+|--------------------------------------------------------------------------
 | STATUS
 |--------------------------------------------------------------------------
 |
@@ -279,6 +300,27 @@ try {
 
     /*
     |--------------------------------------------------------------------------
+    | PAGINATION
+    |--------------------------------------------------------------------------
+    */
+
+    $totalPages = max(
+        1,
+        (int)ceil(
+            $totalMutualFunds / $perPage
+        )
+    );
+
+    if ($currentPage > $totalPages) {
+        $currentPage = $totalPages;
+    }
+
+    $offset =
+        ($currentPage - 1) * $perPage;
+
+
+    /*
+    |--------------------------------------------------------------------------
     | FETCH DATA
     |--------------------------------------------------------------------------
     */
@@ -315,6 +357,9 @@ try {
         ORDER BY
             display_name ASC NULLS LAST,
             id ASC
+
+        LIMIT :limit
+        OFFSET :offset
     ";
 
 
@@ -339,6 +384,19 @@ try {
     }
 
 
+    $stmt->bindValue(
+        ':limit',
+        $perPage,
+        PDO::PARAM_INT
+    );
+
+    $stmt->bindValue(
+        ':offset',
+        $offset,
+        PDO::PARAM_INT
+    );
+
+
     $stmt->execute();
 
 
@@ -356,6 +414,12 @@ try {
     $mutualFunds = [];
 
     $totalMutualFunds = 0;
+
+    $totalPages = 1;
+
+    $currentPage = 1;
+
+    $offset = 0;
 }
 
 
@@ -667,14 +731,39 @@ try {
      COUNT
 ================================================================ -->
 
+<?php
+
+$showingFrom =
+    $totalMutualFunds > 0
+        ? $offset + 1
+        : 0;
+
+$showingTo =
+    min(
+        $offset + $perPage,
+        $totalMutualFunds
+    );
+
+?>
+
 <div class="filter-count">
 
     Showing
 
     <b>
-        <?= number_format(
-            $totalMutualFunds
-        ) ?>
+        <?= number_format($showingFrom) ?>
+    </b>
+
+    -
+
+    <b>
+        <?= number_format($showingTo) ?>
+    </b>
+
+    of
+
+    <b>
+        <?= number_format($totalMutualFunds) ?>
     </b>
 
     Mutual Funds
@@ -916,6 +1005,59 @@ try {
     </table>
 
 </div>
+
+
+<?php if (($totalPages ?? 1) > 1): ?>
+
+    <div class="pagination">
+
+        <?php if ($currentPage > 1): ?>
+
+            <a
+                class="btn btn-outline btn-sm"
+                href="index.php?<?= e(
+                    http_build_query([
+                        'page' => 'mutual_funds',
+                        'display_name_starts_with' => $displayNameStartsWith,
+                        'fund_category' => $fundCategory,
+                        'amc_id' => $amcId,
+                        'p' => $currentPage - 1
+                    ])
+                ) ?>"
+            >
+                Previous
+            </a>
+
+        <?php endif; ?>
+
+
+        <span class="pagination-info">
+            Page <?= $currentPage ?> of <?= $totalPages ?>
+        </span>
+
+
+        <?php if ($currentPage < $totalPages): ?>
+
+            <a
+                class="btn btn-outline btn-sm"
+                href="index.php?<?= e(
+                    http_build_query([
+                        'page' => 'mutual_funds',
+                        'display_name_starts_with' => $displayNameStartsWith,
+                        'fund_category' => $fundCategory,
+                        'amc_id' => $amcId,
+                        'p' => $currentPage + 1
+                    ])
+                ) ?>"
+            >
+                Next
+            </a>
+
+        <?php endif; ?>
+
+    </div>
+
+<?php endif; ?>
 
 
 
