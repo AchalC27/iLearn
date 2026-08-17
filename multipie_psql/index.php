@@ -14,6 +14,8 @@ $allowedPages = [
     'amcs',
     'announcements',
     'cams_feedbacks',
+    'companies',
+    'mutual_funds',
 ];
 
 if (!in_array($page, $allowedPages, true)) {

@@ -89,7 +89,7 @@ try {
                     >
                         <span class="nav-btn-left">
                             <svg class="icon">
-                                <use href="#i-file-text"></use>
+                                <use href="#i-bell"></use>
                             </svg>
                             <span class="sidebar-label">
                                 Announcements
@@ -105,7 +105,7 @@ try {
                     >
                         <span class="nav-btn-left">
                             <svg class="icon">
-                                <use href="#i-message"></use>
+                                <use href="#i-file-text"></use>
                             </svg>
                             <span class="sidebar-label">
                                 Cams Feedbacks
@@ -113,6 +113,39 @@ try {
                         </span>
                     </a>
                 </li>
+
+                <li>
+                    <a
+                        class="nav-btn <?= $page === 'companies' ? 'active' : '' ?>"
+                        href="index.php?page=companies"
+                    >
+                        <span class="nav-btn-left">
+                            <svg class="icon">
+                                <use href="#i-message"></use>
+                            </svg>
+                            <span class="sidebar-label">
+                                Companies
+                            </span>
+                        </span>
+                    </a>
+                </li>
+
+                <li>
+                    <a
+                        class="nav-btn <?= $page === 'mutual_funds' ? 'active' : '' ?>"
+                        href="index.php?page=mutual_funds"
+                    >
+                        <span class="nav-btn-left">
+                            <svg class="icon">
+                                <use href="#i-message"></use>
+                            </svg>
+                            <span class="sidebar-label">
+                                Mutual Funds
+                            </span>
+                        </span>
+                    </a>
+                </li>
+
 
                 <!-- <li>
                     <a
