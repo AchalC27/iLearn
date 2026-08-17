@@ -1,15 +1,4 @@
 <?php
-
-/*
-|--------------------------------------------------------------------------
-| MultiPie Application PostgreSQL Database
-|--------------------------------------------------------------------------
-| Database: multipie_main_prod
-|
-| This connection is intentionally separate from users_connection.php.
-|--------------------------------------------------------------------------
-*/
-
 return [
     'enabled' => true,
 

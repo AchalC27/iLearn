@@ -594,14 +594,39 @@ try {
      COUNT
 ================================================================ -->
 
+<?php
+
+$showingFrom =
+    $totalCompanies > 0
+        ? $offset + 1
+        : 0;
+
+$showingTo =
+    min(
+        $offset + $perPage,
+        $totalCompanies
+    );
+
+?>
+
 <div class="filter-count">
 
     Showing
 
     <b>
-        <?= number_format(
-            $totalCompanies
-        ) ?>
+        <?= number_format($showingFrom) ?>
+    </b>
+
+    -
+
+    <b>
+        <?= number_format($showingTo) ?>
+    </b>
+
+    of
+
+    <b>
+        <?= number_format($totalCompanies) ?>
     </b>
 
     Companies
@@ -888,12 +913,49 @@ try {
 
             <a
                 class="btn btn-outline btn-sm"
-                href="index.php?<?= e(multipieQuery(['p' => $currentPage - 1])) ?>"
+                href="index.php?<?= e(
+                    http_build_query([
+                        'page' => 'companies',
+                        'name_starts_with' => $nameStartsWith,
+                        'bse_ticker' => $bseTicker,
+                        'nse_ticker' => $nseTicker,
+                        'p' => $currentPage - 1
+                    ])
+                ) ?>"
             >
                 Previous
             </a>
 
         <?php endif; ?>
+
+
+        <span class="pagination-info">
+            Page <?= $currentPage ?> of <?= $totalPages ?>
+        </span>
+
+
+        <?php if ($currentPage < $totalPages): ?>
+
+            <a
+                class="btn btn-outline btn-sm"
+                href="index.php?<?= e(
+                    http_build_query([
+                        'page' => 'companies',
+                        'name_starts_with' => $nameStartsWith,
+                        'bse_ticker' => $bseTicker,
+                        'nse_ticker' => $nseTicker,
+                        'p' => $currentPage + 1
+                    ])
+                ) ?>"
+            >
+                Next
+            </a>
+
+        <?php endif; ?>
+
+    </div>
+
+<?php endif; ?>
 
 
         <span class="pagination-info">
@@ -914,7 +976,7 @@ try {
 
     </div>
 
-<?php endif; ?>
+<?php ?>
 
 
 <!-- =================================================================

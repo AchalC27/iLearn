@@ -16,6 +16,15 @@ $allowedPages = [
     'cams_feedbacks',
     'companies',
     'mutual_funds',
+    'exchange_holidays',
+    'external_links',
+    'holdings_statements',
+    'instrument_categories',
+    'multi_boxes',
+    'notification_settings',
+    'posts',
+    'products',
+    'market_indices',
 ];
 
 if (!in_array($page, $allowedPages, true)) {

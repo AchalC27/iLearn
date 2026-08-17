@@ -20,7 +20,6 @@ try {
         ->query('SELECT COUNT(*) FROM public.users')
         ->fetchColumn();
 } catch (Throwable $e) {
-    // Keep the navigation visible even if the DB is temporarily unavailable.
     $userCount = 0;
 }
 ?>
@@ -146,76 +145,155 @@ try {
                     </a>
                 </li>
 
+                <li>
+                    <a
+                        class="nav-btn <?= $page === 'exchange_holidays' ? 'active' : '' ?>"
+                        href="index.php?page=exchange_holidays"
+                    >
+                        <span class="nav-btn-left">
+                            <svg class="icon">
+                                <use href="#i-message"></use>
+                            </svg>
+                            <span class="sidebar-label">
+                                Exchange Holidays
+                            </span>
+                        </span>
+                    </a>
+                </li>
 
-                <!-- <li>
+                <li>
+                    <a
+                        class="nav-btn <?= $page === 'external_links' ? 'active' : '' ?>"
+                        href="index.php?page=external_links"
+                    >
+                        <span class="nav-btn-left">
+                            <svg class="icon">
+                                <use href="#i-message"></use>
+                            </svg>
+                            <span class="sidebar-label">
+                                External Links
+                            </span>
+                        </span>
+                    </a>
+                </li>
+
+                <li>
+                    <a
+                        class="nav-btn <?= $page === 'holdings_statements' ? 'active' : '' ?>"
+                        href="index.php?page=holdings_statements"
+                    >
+                        <span class="nav-btn-left">
+                            <svg class="icon">
+                                <use href="#i-message"></use>
+                            </svg>
+                            <span class="sidebar-label">
+                                Holdings Statements
+                            </span>
+                        </span>
+                    </a>
+                </li>
+
+
+                <li>
+                    <a
+                        class="nav-btn <?= $page === 'instrument_categories' ? 'active' : '' ?>"
+                        href="index.php?page=instrument_categories"
+                    >
+                        <span class="nav-btn-left">
+                            <svg class="icon">
+                                <use href="#i-message"></use>
+                            </svg>
+                            <span class="sidebar-label">
+                                Instrument Categories
+                            </span>
+                        </span>
+                    </a>
+                </li>
+
+                <li>
+                    <a
+                        class="nav-btn <?= $page === 'multi_boxes' ? 'active' : '' ?>"
+                        href="index.php?page=multi_boxes"
+                    >
+                        <span class="nav-btn-left">
+                            <svg class="icon">
+                                <use href="#i-message"></use>
+                            </svg>
+                            <span class="sidebar-label">
+                                Multi Boxes
+                            </span>
+                        </span>
+                    </a>
+                </li>
+
+                <li>
+                    <a
+                        class="nav-btn <?= $page === 'market_indices' ? 'active' : '' ?>"
+                        href="index.php?page=market_indices"
+                    >
+                        <span class="nav-btn-left">
+                            <svg class="icon">
+                                <use href="#i-message"></use>
+                            </svg>
+                            <span class="sidebar-label">
+                                Market Indices
+                            </span>
+                        </span>
+                    </a>
+                </li>
+
+                <li>
+                    <a
+                        class="nav-btn <?= $page === 'notification_settings' ? 'active' : '' ?>"
+                        href="index.php?page=notification_settings"
+                    >
+                        <span class="nav-btn-left">
+                            <svg class="icon">
+                                <use href="#i-message"></use>
+                            </svg>
+                            <span class="sidebar-label">
+                                Notification Settings
+                            </span>
+                        </span>
+                    </a>
+                </li>
+
+                <li>
                     <a
                         class="nav-btn <?= $page === 'posts' ? 'active' : '' ?>"
                         href="index.php?page=posts"
                     >
                         <span class="nav-btn-left">
                             <svg class="icon">
-                                <use href="#i-file-text"/>
+                                <use href="#i-message"></use>
                             </svg>
-                            <span class="sidebar-label">Posts &amp; Articles</span>
+                            <span class="sidebar-label">
+                                Posts
+                            </span>
                         </span>
                     </a>
                 </li>
 
                 <li>
                     <a
-                        class="nav-btn <?= $page === 'comments' ? 'active' : '' ?>"
-                        href="index.php?page=comments"
+                        class="nav-btn <?= $page === 'products' ? 'active' : '' ?>"
+                        href="index.php?page=products"
                     >
                         <span class="nav-btn-left">
                             <svg class="icon">
-                                <use href="#i-message"/>
+                                <use href="#i-message"></use>
                             </svg>
-                            <span class="sidebar-label">Comments</span>
+                            <span class="sidebar-label">
+                                Products
+                            </span>
                         </span>
                     </a>
-                </li> -->
+                </li>
+
 
             </ul>
         </div>
 
-        <!-- <div>
-            <p class="sidebar-group-title">Analytics &amp; Inspector</p>
-
-            <ul role="list">
-
-                <li>
-                    <a
-                        class="nav-btn <?= $page === 'analytics' ? 'active' : '' ?>"
-                        href="index.php?page=analytics"
-                    >
-                        <span class="nav-btn-left">
-                            <svg class="icon">
-                                <use href="#i-bar-chart"/>
-                            </svg>
-                            <span class="sidebar-label">Learning Analytics</span>
-                        </span>
-                    </a>
-                </li>
-
-                <li>
-                    <a
-                        class="nav-btn"
-                        href="#"
-                        onclick="return false;"
-                    >
-                        <span class="nav-btn-left">
-                            <svg class="icon">
-                                <use href="#i-code"/>
-                            </svg>
-                            <span class="sidebar-label">HTML Code Inspector</span>
-                        </span>
-
-                        <span class="sidebar-pill-raw sidebar-label">RAW</span>
-                    </a>
-                </li>
-
-            </ul>
-        </div> -->
 
     </nav>
 

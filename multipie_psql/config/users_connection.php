@@ -1,16 +1,4 @@
 <?php
-
-/*
-|--------------------------------------------------------------------------
-| MultiPie Authentication PostgreSQL Database
-|--------------------------------------------------------------------------
-| Database: multipie_auth_prod
-| Table:   public.users
-|
-| Replace the values below with the corporate PostgreSQL server details.
-|--------------------------------------------------------------------------
-*/
-
 return [
     'enabled' => true,
 
