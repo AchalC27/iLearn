@@ -13,6 +13,7 @@ $allowedPages = [
     'analytics',
     'amcs',
     'announcements',
+    'brokers',
     'cams_feedbacks',
     'companies',
     'mutual_funds',
@@ -25,6 +26,15 @@ $allowedPages = [
     'posts',
     'products',
     'market_indices',
+    'profane_words',
+    'reports',
+    'rewards',
+    'settings',
+    'showcases',
+    'subscribers',
+    'topics',
+    'stories',
+
 ];
 
 if (!in_array($page, $allowedPages, true)) {

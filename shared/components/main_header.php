@@ -39,7 +39,7 @@ $isMultiPie = $currentApp === 'multipie_psql';
                 class="database-button multipie-button <?= $isMultiPie ? 'active' : '' ?>"
                 href="../index.php?app=multipie_psql&amp;page=<?= urlencode($currentPage) ?>"
             >
-                <span class="database-name">MultiPie</span>
+                <span class="database-name">Community</span>
                 <!-- <span class="database-type">PostgreSQL</span> -->
             </a>
 
