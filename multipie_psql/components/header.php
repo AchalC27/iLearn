@@ -28,11 +28,11 @@
         <span class="btn-label">HTML Templates</span>
       </a> -->
 
-      <div class="header-market-badge">
+      <!-- <div class="header-market-badge">
         <span class="dot-live"></span>
         <span class="market-label">NIFTY 50:</span>
         <span class="market-value">24,320.15 (+0.45%)</span>
-      </div>
+      </div> -->
 
       <a class="icon-btn" href="index.php?page=announcements" title="Notifications">
         <svg class="icon"><use href="#i-bell"/></svg>

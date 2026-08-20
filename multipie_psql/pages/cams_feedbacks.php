@@ -153,8 +153,6 @@ try {
 
     $appPdo = getAppDb();
 
-    $usersPdo = getUsersDb();
-
 
     /*
     |--------------------------------------------------------------------------
@@ -222,7 +220,7 @@ try {
 
 
         $userStmt =
-            $usersPdo->prepare($userSql);
+            $AppPdo->prepare($userSql);
 
 
         foreach (
@@ -606,7 +604,7 @@ try {
 
 
         $userDetailsStmt =
-            $usersPdo->prepare(
+            $appPdo->prepare(
                 $userDetailsSql
             );
 

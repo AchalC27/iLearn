@@ -103,7 +103,6 @@ function storyQuery(array $overrides = []): string
 
 try {
     $appDb = getAppDb();
-    $usersDb = getUsersDb();
 
     $where = [];
     $params = [];
@@ -199,7 +198,7 @@ try {
             $userParams[$key] = $userId;
         }
 
-        $userStmt = $usersDb->prepare(
+        $userStmt = $appDb->prepare(
             'SELECT id, username, email, mobile, display_name FROM public.users WHERE id IN (' . implode(',', $placeholders) . ')'
         );
 

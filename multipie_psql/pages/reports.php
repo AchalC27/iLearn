@@ -513,8 +513,8 @@ try {
 
     if (!empty($reporterIds)) {
 
-        $usersPdo =
-            getUsersDb();
+        $AppPdo =
+            getAppDb();
 
 
         $placeholders = [];
@@ -558,7 +558,7 @@ try {
 
 
         $usersStmt =
-            $usersPdo->prepare(
+            $AppPdo->prepare(
                 $usersSql
             );
 

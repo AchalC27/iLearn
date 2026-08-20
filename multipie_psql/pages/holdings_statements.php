@@ -413,6 +413,7 @@ function holdings_page_url(
 
 ?>
 
+<!-- ==================== PAGE HEADER ==================== -->
 <section class="view-header">
 
     <div>
@@ -434,10 +435,7 @@ function holdings_page_url(
 </section>
 
 
-<!-- ================================================================
-     FILTER BAR
-================================================================ -->
-
+<!-- ==================== FILTER BAR ==================== -->
 <form
     class="filter-bar"
     method="get"
@@ -527,10 +525,7 @@ function holdings_page_url(
 </form>
 
 
-<!-- ================================================================
-     RESULT COUNT
-================================================================ -->
-
+<!-- ==================== RESULT COUNT ==================== -->
 <div class="filter-count">
 
     Showing
@@ -561,10 +556,7 @@ function holdings_page_url(
 </div>
 
 
-<!-- ================================================================
-     TABLE
-================================================================ -->
-
+<!-- ==================== TABLE ==================== -->
 <div class="table-wrap">
 
     <table>
@@ -690,20 +682,16 @@ function holdings_page_url(
                 </td>
 
 
-                <!-- Status -->
+                <!-- Status (Original Active Badge UI) -->
 
                 <td>
 
                     <span
-                        class="status-badge
-                        <?= e($statusClass) ?>"
+                        class="status-badge <?= e($statusClass) ?>"
                     >
 
                         <span
-                            class="
-                            dot-status
-                            <?= e($statusClass) ?>
-                            "
+                            class="dot-status <?= e($statusClass) ?>"
                         ></span>
 
                         <?= e($statusText) ?>
@@ -721,20 +709,12 @@ function holdings_page_url(
 
                         <button
                             type="button"
-                            class="mini-btn"
-                            onclick="openHoldingEditModal(
-                                <?= htmlspecialchars(
-                                    json_encode(
-                                        $statement,
-                                        JSON_HEX_TAG |
-                                        JSON_HEX_APOS |
-                                        JSON_HEX_QUOT |
-                                        JSON_HEX_AMP
-                                    ),
-                                    ENT_QUOTES,
-                                    'UTF-8'
-                                ) ?>
-                            )"
+                            class="mini-btn js-edit-holding"
+                            data-statement="<?= htmlspecialchars(
+                                json_encode($statement),
+                                ENT_QUOTES,
+                                'UTF-8'
+                            ) ?>"
                         >
                             Edit
                         </button>
@@ -763,10 +743,7 @@ function holdings_page_url(
 </div>
 
 
-<!-- ================================================================
-     PAGINATION
-================================================================ -->
-
+<!-- ==================== PAGINATION ==================== -->
 <?php if ($totalPages > 1): ?>
 
     <div class="pagination">
@@ -852,27 +829,24 @@ function holdings_page_url(
 <?php endif; ?>
 
 
-<!-- ================================================================
-     EDIT MODAL
-================================================================ -->
-
+<!-- ==================== EDIT MODAL (Popup UI) ==================== -->
 <div
     id="holdingEditModal"
-    class="modal-overlay"
-    style="display:none;"
+    class="user-popup-overlay"
+    hidden
 >
 
     <div
-        class="modal-container"
+        class="user-popup"
         role="dialog"
         aria-modal="true"
     >
 
-        <div class="modal-header">
+        <div class="user-popup-header">
 
             <div>
 
-                <h2>
+                <h2 id="holdingModalTitle">
                     Edit Holdings Statement
                 </h2>
 
@@ -885,8 +859,7 @@ function holdings_page_url(
 
             <button
                 type="button"
-                class="modal-close"
-                onclick="closeHoldingEditModal()"
+                class="user-popup-close js-modal-close"
                 aria-label="Close"
             >
                 &times;
@@ -895,136 +868,129 @@ function holdings_page_url(
         </div>
 
 
-        <div class="modal-body">
+        <div class="user-popup-grid">
 
-            <div class="form-grid">
+            <div class="field">
 
-                <div class="form-group">
+                <label for="holding_edit_id">
+                    ID
+                </label>
 
-                    <label>
-                        ID
-                    </label>
+                <input
+                    id="holding_edit_id"
+                    type="text"
+                    disabled
+                >
 
-                    <input
-                        id="holding_edit_id"
-                        type="text"
-                        readonly
-                        disabled
-                    >
-
-                </div>
+            </div>
 
 
-                <div class="form-group">
+            <div class="field">
 
-                    <label>
-                        Connected Account ID
-                    </label>
+                <label for="holding_edit_connected_account">
+                    Connected Account ID
+                </label>
 
-                    <input
-                        id="holding_edit_connected_account"
-                        type="text"
-                        readonly
-                    >
+                <input
+                    id="holding_edit_connected_account"
+                    type="text"
+                    disabled
+                >
 
-                </div>
-
-
-                <div class="form-group">
-
-                    <label>
-                        Statement
-                    </label>
-
-                    <input
-                        id="holding_edit_statement"
-                        type="text"
-                    >
-
-                </div>
+            </div>
 
 
-                <div class="form-group">
+            <div class="field">
 
-                    <label>
-                        For Requested
-                    </label>
+                <label for="holding_edit_statement">
+                    Statement
+                </label>
 
-                    <input
-                        id="holding_edit_for"
-                        type="text"
-                    >
+                <input
+                    id="holding_edit_statement"
+                    type="text"
+                    placeholder="Enter statement type"
+                >
 
-                </div>
-
-
-                <div class="form-group">
-
-                    <label>
-                        Status
-                    </label>
-
-                    <select
-                        id="holding_edit_status"
-                    >
-
-                        <option value="0">
-                            Active
-                        </option>
-
-                        <option value="1">
-                            Inactive
-                        </option>
-
-                    </select>
-
-                </div>
+            </div>
 
 
-                <div class="form-group">
+            <div class="field">
 
-                    <label>
-                        Created
-                    </label>
+                <label for="holding_edit_for">
+                    For Requested
+                </label>
 
-                    <input
-                        id="holding_edit_created"
-                        type="text"
-                        readonly
-                    >
+                <input
+                    id="holding_edit_for"
+                    type="text"
+                    placeholder="Enter requested for"
+                >
 
-                </div>
+            </div>
 
 
-                <div class="form-group">
+            <div class="field">
 
-                    <label>
-                        Updated
-                    </label>
+                <label for="holding_edit_status">
+                    Status
+                </label>
 
-                    <input
-                        id="holding_edit_updated"
-                        type="text"
-                        readonly
-                    >
+                <select id="holding_edit_status">
 
-                </div>
+                    <option value="0">
+                        Active
+                    </option>
+
+                    <option value="1">
+                        Inactive
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="field">
+
+                <label for="holding_edit_created">
+                    Created
+                </label>
+
+                <input
+                    id="holding_edit_created"
+                    type="text"
+                    disabled
+                >
+
+            </div>
+
+
+            <div class="field">
+
+                <label for="holding_edit_updated">
+                    Updated
+                </label>
+
+                <input
+                    id="holding_edit_updated"
+                    type="text"
+                    disabled
+                >
 
             </div>
 
         </div>
 
 
-        <div class="modal-footer">
+        <div class="user-popup-footer">
 
             <button
                 type="button"
-                class="btn btn-outline"
-                onclick="closeHoldingEditModal()"
+                class="btn btn-outline js-modal-close"
             >
                 Close
             </button>
-
 
             <!--
                 Intentionally NOT connected to database.
@@ -1034,7 +1000,7 @@ function holdings_page_url(
             <button
                 type="button"
                 class="btn btn-orange"
-                onclick="return false;"
+                id="btnSaveHolding"
             >
                 Save Changes
             </button>
@@ -1047,112 +1013,59 @@ function holdings_page_url(
 
 
 <script>
+(() => {
+    const modal = document.getElementById('holdingEditModal');
+    const fields = {
+        id: document.getElementById('holding_edit_id'),
+        connected: document.getElementById('holding_edit_connected_account'),
+        statement: document.getElementById('holding_edit_statement'),
+        forRequested: document.getElementById('holding_edit_for'),
+        status: document.getElementById('holding_edit_status'),
+        created: document.getElementById('holding_edit_created'),
+        updated: document.getElementById('holding_edit_updated')
+    };
 
-function openHoldingEditModal(data)
-{
-    document.getElementById(
-        'holding_edit_id'
-    ).value =
-        data.id ?? '';
+    const toggleModal = (show) => {
+        modal.hidden = !show;
+        document.body.style.overflow = show ? 'hidden' : '';
+    };
 
+    const setModalData = (data = {}) => {
+        fields.id.value = data.id ?? '';
+        fields.connected.value = data.connected_account_id ?? '';
+        fields.statement.value = data.statement_type ?? '';
+        fields.forRequested.value = data.statement_for ?? '';
+        fields.status.value = data.status ?? '0';
+        fields.created.value = data.created_at ?? 'Not created yet';
+        fields.updated.value = data.updated_at ?? 'Not updated yet';
+        toggleModal(true);
+    };
 
-    document.getElementById(
-        'holding_edit_connected_account'
-    ).value =
-        data.connected_account_id ?? '';
+    document.querySelectorAll('.js-edit-holding').forEach(btn => {
+        btn.addEventListener('click', () => {
+            try {
+                const statement = JSON.parse(btn.dataset.statement);
+                setModalData(statement);
+            } catch (err) {
+                console.error('Failed to parse statement data', err);
+            }
+        });
+    });
 
+    document.querySelectorAll('.js-modal-close').forEach(btn => {
+        btn.addEventListener('click', () => toggleModal(false));
+    });
 
-    document.getElementById(
-        'holding_edit_statement'
-    ).value =
-        data.statement_type ?? '';
+    modal?.addEventListener('click', (e) => {
+        if (e.target === modal) toggleModal(false);
+    });
 
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && !modal.hidden) toggleModal(false);
+    });
 
-    document.getElementById(
-        'holding_edit_for'
-    ).value =
-        data.statement_for ?? '';
-
-
-    document.getElementById(
-        'holding_edit_status'
-    ).value =
-        data.status ?? '0';
-
-
-    document.getElementById(
-        'holding_edit_created'
-    ).value =
-        data.created_at ?? '';
-
-
-    document.getElementById(
-        'holding_edit_updated'
-    ).value =
-        data.updated_at ?? '';
-
-
-    document.getElementById(
-        'holdingEditModal'
-    ).style.display =
-        'flex';
-
-
-    document.body.style.overflow =
-        'hidden';
-}
-
-
-function closeHoldingEditModal()
-{
-    document.getElementById(
-        'holdingEditModal'
-    ).style.display =
-        'none';
-
-
-    document.body.style.overflow =
-        '';
-}
-
-
-document.addEventListener(
-    'click',
-    function(event)
-    {
-
-        const modal =
-            document.getElementById(
-                'holdingEditModal'
-            );
-
-
-        if (
-            event.target === modal
-        ) {
-
-            closeHoldingEditModal();
-
-        }
-
-    }
-);
-
-
-document.addEventListener(
-    'keydown',
-    function(event)
-    {
-
-        if (
-            event.key === 'Escape'
-        ) {
-
-            closeHoldingEditModal();
-
-        }
-
-    }
-);
-
+    document.getElementById('btnSaveHolding')?.addEventListener('click', () => {
+        alert('Save is currently disabled. Corporate data cannot be modified.');
+    });
+})();
 </script>

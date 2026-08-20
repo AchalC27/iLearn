@@ -2,18 +2,18 @@
 
 $userCount = 0;
 $mainTables = [];
-$usersDbError = null;
+$AppDbError = null;
 $appDbError = null;
 
 try {
-    $usersDb = getUsersDb();
+    $AppDb = getAppDb();
 
-    $userCount = (int)$usersDb
+    $userCount = (int)$AppDb
         ->query('SELECT COUNT(*) FROM public.users')
         ->fetchColumn();
 
 } catch (Throwable $e) {
-    $usersDbError = $e->getMessage();
+    $AppDbError = $e->getMessage();
 }
 
 try {
@@ -82,11 +82,11 @@ try {
         </p>
 
         <div class="metric-value">
-            <?= $usersDbError ? 'Error' : 'Connected' ?>
+            <?= $AppDbError ? 'Error' : 'Connected' ?>
         </div>
 
         <p class="metric-sub">
-            PostgreSQL users database
+            Auth Server Database multipie_auth_prod
         </p>
 
     </div>

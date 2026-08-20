@@ -40,9 +40,9 @@ try {
 
     if ($userEmailFilter !== '') {
 
-        $usersDb = getUsersDb();
+        $AppDb = getAppDb();
 
-        $userStmt = $usersDb->prepare("
+        $userStmt = $AppDb->prepare("
             SELECT id
             FROM public.users
             WHERE email = :email
@@ -293,8 +293,8 @@ if ($dbError === null) {
 
         if ($userIds) {
 
-            $usersDb =
-                getUsersDb();
+            $AppDb =
+                getAppDb();
 
             $emailPlaceholders = [];
             $emailParams = [];
@@ -330,7 +330,7 @@ if ($dbError === null) {
             ";
 
             $emailStmt =
-                $usersDb->prepare(
+                $AppDb->prepare(
                     $emailSql
                 );
 
