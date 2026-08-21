@@ -700,3 +700,256 @@ td.right{ text-align:right; white-space:nowrap; }
 .cms-grid-layout {
   min-height: calc(100vh - 64px);
 }
+/* ---------------- Admin Section Switch ---------------- */
+.sidebar-section-switch{
+  padding:0 12px 12px;
+  border-bottom:1px solid var(--slate-200);
+  margin-bottom:12px;
+}
+.sidebar-auth-admin-btn,
+.sidebar-auth-back-btn{
+  width:100%;
+  min-height:38px;
+  display:flex;
+  align-items:center;
+  justify-content:flex-start;
+  gap:9px;
+  padding:9px 12px;
+  border:1px solid var(--orange);
+  border-radius:6px;
+  background:var(--orange);
+  color:#fff;
+  font-size:12px;
+  font-weight:700;
+  line-height:1.2;
+  transition:background .15s,border-color .15s,box-shadow .15s;
+}
+.sidebar-auth-admin-btn:hover{
+  background:var(--orange-hover);
+  border-color:var(--orange-hover);
+  box-shadow:var(--shadow-xs);
+}
+.sidebar-auth-back-btn{
+  background:#fff;
+  border-color:var(--slate-300);
+  color:var(--navy);
+}
+.sidebar-auth-back-btn:hover{
+  background:var(--slate-50);
+  border-color:var(--slate-400);
+}
+.sidebar-auth-admin-icon{
+  width:20px;
+  height:20px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-shrink:0;
+}
+.sidebar-auth-admin-icon .icon{
+  width:16px;
+  height:16px;
+}
+.auth-sidebar-nav{
+  flex:1;
+}
+
+@media (max-width:1024px){
+  .sidebar-section-switch{
+    padding-left:8px;
+    padding-right:8px;
+  }
+  .sidebar-auth-admin-btn,
+  .sidebar-auth-back-btn{
+    justify-content:center;
+    padding-left:6px;
+    padding-right:6px;
+  }
+  .sidebar-auth-admin-btn > span:last-child,
+  .sidebar-auth-back-btn > span:last-child{
+    display:none;
+  }
+}
+
+@media (max-width:768px){
+  .sidebar-section-switch{
+    padding:8px 6px;
+    margin-bottom:0;
+    border-bottom:0;
+    flex-shrink:0;
+  }
+  .sidebar-auth-admin-btn,
+  .sidebar-auth-back-btn{
+    width:auto;
+    min-width:180px;
+    justify-content:flex-start;
+  }
+  .sidebar-auth-admin-btn > span:last-child,
+  .sidebar-auth-back-btn > span:last-child{
+    display:inline;
+  }
+}
+/* ============================================================
+   AUTH REFERRAL PAGES
+   ============================================================ */
+
+.referral-page-card {
+    max-width: 920px;
+    margin: 20px auto;
+    padding: 0;
+    overflow: hidden;
+}
+
+.referral-detail-grid {
+    display: grid;
+    grid-template-columns: 45% 55%;
+    row-gap: 14px;
+    padding: 28px 30px;
+}
+
+.referral-detail-label {
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.referral-detail-value {
+    font-size: 18px;
+}
+
+.referral-used-section {
+    padding: 0 24px 24px;
+}
+
+.referral-used-section h2 {
+    margin: 10px 0 18px;
+}
+
+.referral-empty {
+    padding: 20px;
+    text-align: center;
+}
+
+.referral-page-card .user-popup-footer {
+    padding: 18px 30px;
+}
+
+.referral-page-card .table-wrap {
+    margin-top: 10px;
+}
+
+
+/* ============================================================
+   NEW REFERRAL PAGE
+   ============================================================ */
+
+#new-referral-modal {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#new-referral-modal .user-popup {
+    width: min(720px, calc(100vw - 40px));
+    max-height: calc(100vh - 40px);
+    overflow-y: auto;
+}
+
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+@media (max-width: 768px) {
+
+    .referral-detail-grid {
+        grid-template-columns: 1fr;
+        row-gap: 6px;
+    }
+
+    .referral-detail-value {
+        margin-bottom: 12px;
+    }
+
+    .referral-page-card {
+        margin: 10px;
+    }
+
+}
+
+/* =========================================================
+   REFERRER BUTTON
+   Used in Referral Codes table
+   ========================================================= */
+
+.referrer-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 34px;
+    padding: 6px 14px;
+
+    border: 1px solid #6f4cff;
+    border-radius: 6px;
+
+    background: #ffffff;
+    color: #5f3df5;
+
+    font-size: 15px;
+    font-family: inherit;
+    font-weight: 500;
+
+    line-height: 1.2;
+    text-decoration: none;
+
+    cursor: pointer;
+
+    transition:
+        background-color 0.15s ease,
+        color 0.15s ease,
+        border-color 0.15s ease,
+        box-shadow 0.15s ease,
+        transform 0.15s ease;
+}
+
+.referrer-btn:hover {
+    background: #6f4cff;
+    border-color: #6f4cff;
+    color: #ffffff;
+
+    box-shadow: 0 2px 6px rgba(111, 76, 255, 0.20);
+}
+
+.referrer-btn:active {
+    transform: translateY(1px);
+    box-shadow: none;
+}
+
+.referrer-btn:focus {
+    outline: none;
+    border-color: #5f3df5;
+    box-shadow: 0 0 0 3px rgba(111, 76, 255, 0.15);
+}
+
+
+/* =========================================================
+   REFERRER COLUMN
+   ========================================================= */
+
+.referral-table .referrer-column {
+    white-space: nowrap;
+    min-width: 150px;
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 768px) {
+    .referrer-btn {
+        min-height: 32px;
+        padding: 5px 11px;
+        font-size: 14px;
+    }
+}

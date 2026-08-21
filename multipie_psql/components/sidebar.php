@@ -195,6 +195,18 @@ $menuItems = [
 ?>
 
 <aside id="ilearn-sidebar" class="cms-sidebar">
+    <div class="sidebar-section-switch">
+        <a
+            class="sidebar-auth-admin-btn"
+            href="index.php?sidebar=auth&page=auth/auth_dashboard"
+        >
+            <span class="sidebar-auth-admin-icon">
+                <svg class="icon"><use href="#i-shield"/></svg>
+            </span>
+            <span>Auth Server Admin</span>
+        </a>
+    </div>
+
     <nav id="sidebar-main-nav">
         <div>
             <p class="sidebar-group-title">Main Menu</p>

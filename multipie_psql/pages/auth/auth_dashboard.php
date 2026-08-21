@@ -2,24 +2,24 @@
 
 $userCount = 0;
 $mainTables = [];
-$AppDbError = null;
-$appDbError = null;
+$AuthDbError = null;
+$AuthDbError = null;
 
 try {
-    $AppDb = getAppDb();
+    $AuthDb = getAuthDb();
 
-    $userCount = (int)$AppDb
+    $userCount = (int)$AuthDb
         ->query('SELECT COUNT(*) FROM public.users')
         ->fetchColumn();
 
 } catch (Throwable $e) {
-    $AppDbError = $e->getMessage();
+    $AuthDbError = $e->getMessage();
 }
 
 try {
-    $appDb = getAppDb();
+    $AuthDb = getAuthDb();
 
-    $tableStmt = $appDb->query("
+    $tableStmt = $AuthDb->query("
         SELECT table_name
         FROM information_schema.tables
         WHERE table_schema = 'public'
@@ -30,7 +30,7 @@ try {
     $mainTables = $tableStmt->fetchAll(PDO::FETCH_COLUMN);
 
 } catch (Throwable $e) {
-    $appDbError = $e->getMessage();
+    $AuthDbError = $e->getMessage();
 }
 
 ?>
@@ -40,7 +40,7 @@ try {
     <div>
 
         <h1>
-            Executive MultiPie Dashboard
+            Auth Server Dashboard
 
             <span class="title-pill">
                 PostgreSQL
@@ -48,7 +48,7 @@ try {
         </h1>
 
         <p class="sub">
-            MultiPie administration connected directly to the PostgreSQL databases.
+            Auth Server administration connected directly to the PostgreSQL databases.
         </p>
 
     </div>
@@ -75,38 +75,38 @@ try {
     </div>
 
 
-    <!-- <div class="metric-card">
+    <div class="metric-card">
 
         <p class="metric-label">
             Auth Database
         </p>
 
         <div class="metric-value">
-            <?= $AppDbError ? 'Error' : 'Connected' ?>
+            <?= $AuthDbError ? 'Error' : 'Connected' ?>
         </div>
 
         <p class="metric-sub">
-            Auth Server Database multipie_auth_prod
+            Auth Server Database multipie_auth_prod 
         </p>
 
-    </div> -->
+    </div>
 
 
-    <div class="metric-card">
+    <!-- <div class="metric-card">
 
         <p class="metric-label">
             Main Database
         </p>
 
         <div class="metric-value">
-            <?= $appDbError ? 'Error' : 'Connected' ?>
+            <?= $AuthDbError ? 'Error' : 'Connected' ?>
         </div>
 
         <p class="metric-sub">
             multipie_main_prod
         </p>
 
-    </div>
+    </div> -->
 
 
     <div class="metric-card">
@@ -147,7 +147,7 @@ try {
     </header>
 
 
-    <?php if ($appDbError): ?>
+    <?php if ($AuthDbError): ?>
 
         <div class="alert-box">
 
@@ -160,7 +160,7 @@ try {
                     </h4>
 
                     <p>
-                        <?= e($appDbError) ?>
+                        <?= e($AuthDbError) ?>
                     </p>
 
                 </div>
